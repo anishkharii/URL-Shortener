@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(227, 227, 227);
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+p{
+    font-size: smaller;
+}
+.section{
+    background-color: rgb(208, 206, 206);
+    display: inline-block;
+    padding:3%;
+    border-radius:10px;
+}
+button{
+    cursor:pointer;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>URL Shortner</title>
+        <link rel="stylesheet" href="/public/styles.css">
+    </head>
+    <body>
+        <h1>API Project: URL Shortner</h1>
+        <hr>
+        <p><b>Example: </b> POST [project_url]/api/shorturl - https://www.google.com</p>
+        <div class="section">
+            <h3>URL Shortner</h3>
+            <form action="/api/shorturl" method="post">
+                <input type="text" name="givenURL" required/>
+                <button type="submit">Short URL</button>
+            </form>
+        </div>
+    </body>
+</html>
