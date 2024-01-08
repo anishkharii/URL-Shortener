@@ -1,0 +1,106 @@
+<!-- success.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortened Successfully</title>
+  <style>
+    /* style.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  color: #3498db;
+}
+
+p {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #2ecc71;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#shortUrl {
+  background-color: #ecf0f1;
+  padding: 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #2ecc71;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>URL Shortened Successfully!</h1>
+    <p>Original URL: <a href="<%= original_url %>" target="_blank"><%= original_url %></a></p>
+    <p>Short URL: <span id="shortUrl"><a href="<%= short_url %>"><%=short_url%></a></span> <button onclick="copyToClipboard()">Copy</button></p>
+    <%if(title){%>
+      <p>Title: <%= title %></p>
+    <% } %>
+    <% if(meta_info){ %>
+      <p>Meta Info: <%= meta_info %></p>
+    <%}%>
+    <p>Copy and share the short URL!</p>
+  </div>
+
+  <script>
+    function copyToClipboard() {
+      var shortUrlElement = document.getElementById('shortUrl');
+      var range = document.createRange();
+      range.selectNode(shortUrlElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+</body>
+</html>

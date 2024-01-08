@@ -1,0 +1,87 @@
+<!-- views/view.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL View</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .delete-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>All URLs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Original URL</th>
+        <th>Short URL</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const url of urls) { %>
+        <tr>
+          <td><%= url.original_url %></td>
+          <td><%= url.short_url %></td>
+          <td>
+            <button class="delete-btn" onclick="deleteURL('<%= url._id %>')">Delete</button>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script>
+    function deleteURL(urlId) {
+      fetch('/api/shorturl/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ urlId: urlId }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (data.success) {
+          window.location.reload();
+        } else {
+          alert('Error deleting URL');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error deleting URL');
+      });
+    }
+  </script>
+</body>
+</html>
