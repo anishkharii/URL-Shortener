@@ -35,7 +35,8 @@ function checkExists(hostname, callback) {
 const URLModel = mongoose.model('URLModel', URLSchema);
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+  const indexPath = path.join(__dirname, '../views/index.html');
+  res.sendFile(indexPath);
 });
 
 app.post('/api/shorturl', async (req, res) => {
